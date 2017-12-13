@@ -1,0 +1,12 @@
+.text-center {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.categories {
+	margin: 10px 20px;
+}
+.category-option {
+	cursor: default;
+}
