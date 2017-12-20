@@ -32,93 +32,175 @@
 
 // external js: isotope.pkgd.js
 
-var exampleObject = [
-  {name: "Name1",
-  district: "Carytown",
-  rating: 4.5,
-  numRating: 20
-  },
-  {name: "Name2",
-  district: "Carytown",
-  rating: 4.3,
-  numRating: 22
-  },
-  {name: "Name3",
-  district: "Carytown",
-  rating: 4.1,
-  numRating: 10
-  },
-  {name: "Name4",
-  district: "Carytown",
-  rating: 3,
-  numRating: 11
-  },
-  {name: "Name5",
-  district: "Carytown",
-  rating: 5,
-  numRating: 111
-  },
-  {name: "Name22",
-  district: "Fan District",
-  rating: 4.5,
-  numRating: 20
-  },
-  {name: "Name21",
-  district: "Fan District",
-  rating: 1,
-  numRating: 2
-  },
-  {name: "Name23",
-  district: "Fan District",
-  rating: 4.0,
-  numRating: 55
-  },
-  {name: "Name24",
-  district: "Fan District",
-  rating: 5,
-  numRating: 2
-},
- {name: "Name25",
-  district: "Fan District",
-  rating: 4.4,
-  numRating: 1111
-},
- {name: "Name100",
-  district: "Museum District",
-  rating: 1,
-  numRating: 2
-  },
-  {name: "Name101",
-  district: "Museum District",
-  rating: 4,
-  numRating: 6
-},
- {name: "Name102",
-  district: "Museum District",
-  rating: 5,
-  numRating: 20
-},
- {name: "Name103",
-  district: "Museum District",
-  rating: 3,
-  numRating: 222
-  },
-  {name: "Name104",
-  district: "Museum District",
-  rating: 3.7,
-  numRating: 54
-  }
-  ]
+// var exampleObject = [
+//   {name: "Name1",
+//   district: "Carytown",
+//   rating: 4.5,
+//   numRating: 20
+//   },
+//   {name: "Name2",
+//   district: "Carytown",
+//   rating: 4.3,
+//   numRating: 22
+//   },
+//   {name: "Name3",
+//   district: "Carytown",
+//   rating: 4.1,
+//   numRating: 10
+//   },
+//   {name: "Name4",
+//   district: "Carytown",
+//   rating: 3,
+//   numRating: 11
+//   },
+//   {name: "Name5",
+//   district: "Carytown",
+//   rating: 5,
+//   numRating: 111
+//   },
+//   {name: "Name22",
+//   district: "Fan District",
+//   rating: 4.5,
+//   numRating: 20
+//   },
+//   {name: "Name21",
+//   district: "Fan District",
+//   rating: 1,
+//   numRating: 2
+//   },
+//   {name: "Name23",
+//   district: "Fan District",
+//   rating: 4.0,
+//   numRating: 55
+//   },
+//   {name: "Name24",
+//   district: "Fan District",
+//   rating: 5,
+//   numRating: 2
+// },
+//  {name: "Name25",
+//   district: "Fan District",
+//   rating: 4.4,
+//   numRating: 1111
+// },
+//  {name: "Name100",
+//   district: "Museum District",
+//   rating: 1,
+//   numRating: 2
+//   },
+//   {name: "Name101",
+//   district: "Museum District",
+//   rating: 4,
+//   numRating: 6
+// },
+//  {name: "Name102",
+//   district: "Museum District",
+//   rating: 5,
+//   numRating: 20
+// },
+//  {name: "Name103",
+//   district: "Museum District",
+//   rating: 3,
+//   numRating: 222
+//   },
+//   {name: "Name104",
+//   district: "Museum District",
+//   rating: 3.7,
+//   numRating: 54
+//   }
+//   ]
 
 //nothing in here yet but there will eventually I'm sure
+
 $(document).on("load", function(){
-// console.log(exampleObject[10].name)
+  displayNeighborhoodInfo();
 })
+
+function displayNeighborhoodInfo() {
+
+       //Change this line when transitioning
+        var neighborhood = $(this).attr("data-name");
+
+         var richmond = new google.maps.LatLng(37.5407,-77.4360);
+
+         map = new google.maps.Map(document.getElementById('map'), {
+          center: richmond,
+          zoom: 11
+          });
+
+          var request = {
+          location: richmond,
+          radius: '20000',
+          type: ['restaurant'],
+          keyword: neighborhood
+          };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+      }
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var object = []
+        for (var i = 0; i < results.length; i++) {
+          
+        var place = results[i];
+        // var name = JSON.stringify(results[i].name);
+        // var attribution = JSON.stringify(results[i].html_attributions[0]);
+        // var style = JSON.stringify(results[i].html_attributions[1]);
+        // var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24";
+        // var address = JSON.stringify(results[i].vicinity);
+        var placeId = results[i].place_id;
+
+        service.getDetails({
+            placeId: placeId 
+          }, function respondToDetailsRequest(results,status) {
+            // console.log(results.formatted_phone_number);
+            var name = results.name;
+            var address = results.vicinity
+            var open = results.opening_hours.open_now;
+            var priceLevel = results.price_level;
+            var rating = results.rating;
+            var phone = results.formatted_phone_number;
+            var mapsUrl = results.url;
+            var website = results.website;
+            var objectToPush = {
+              phone: phone,
+              mapsUrl: mapsUrl,
+              website: website
+            }
+            return(details)
+          });
+
+
+        var rating = JSON.stringify(results[i].rating);
+        var priceLevel = JSON.stringify(results[i].price_level);
+        var open = results[i].opening_hours.open_now;
+        var objectToPush = {
+          name: JSON.stringify(results[i].name),
+          address: JSON.stringify(results[i].vicinity),
+          rating: JSON.stringify(results[i].rating),
+          priceLevel: results[i].price_level,
+          open: results[i].opening_hours.open_now,
+          // details: respondToDetailsRequest()
+        }
+        console.log(objectToPush);
+        };
+ 
+
+     
+      // console.log(JSON.stringify(results));
+      // console.log(JSON.stringify(results[i].place_id));
+    }
+  }
+
+
+
+
 
 
 //this will change to the google ajax return when we actually have one. For now it is 
 //using the example object above
-var object = exampleObject;
 $("#selector-button").on("click", function(){
   //google requester will initiate ajax call? I think that's where we are at this point
   // googleRequester();
@@ -146,14 +228,13 @@ var appendStepOne = function(googleReturn, neighborhoodSelected){
     correctNeighborhood[i].displayRating = changeRating(correctNeighborhood, i);
   }
   for (var i = 0; i < correctNeighborhood.length; i++){
-    var divToAppend = $("<div class='card' name='" + correctNeighborhood[i].name + "' rating='" + correctNeighborhood[i].rating + "'><h3 class='card-header' id='card-name" + count + "'>example-</h3><div class='card-block'><h4 class='card-text' id='rating" + count + "' data-value=''></h4><h4 class='card-text' id='address'>2121 Go Away Ave. 22332</h4><button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Open Modal</button><div class='modal fade' id='myModal' role='dialog'><div class='modal-dialog'><div class='modal-content' style='width: 700px;'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button><h4 class='modal-title' style='z-index: 1'>map</h4></div><div class='modal-body'><div class='hide-the-top' style='height: 50px; width: 100%; z-index: 999999 !important; background-color: white; position: relative'><h1>This is a modal<br><br>THis is stil a modal</h1></div><div class='area-to-append1'>Area to append</div><div class='area-to-append2'>Area to append 2</div><div class='area-to-append3'>Area to append 3</div></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div></div></div>'")
+    var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4' rating='" + results[i].rating + count + "' is-open='" + results[i].opening_hours.open_now + count + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='#'>Item Two</a></h4><p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p></div><div class='card-footer'><small class='text-muted' id='rating-display'" + count + ">&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
    
     $("#card-holder").append(divToAppend)
 
     $("#rating" + count).attr("data-filter", correctNeighborhood[i].rating);
-    $("#rating" + count).html(correctNeighborhood[i].displayRating);
-    $("#card-name" + count).attr("name", correctNeighborhood[i].name);
-    $("#card-name" + count).html(correctNeighborhood[i].name);
+    $("#rating-display" + count).html(correctNeighborhood[i].displayRating);
+    $("#name-display" + count).html(correctNeighborhood[i].name);
 
     count++
   }
@@ -243,29 +324,29 @@ var changeRating = function(data, i){
 
 
 // init Isotope
-var $grid = $('.grid').isotope({
-  itemSelector: '.element-item',
-  layoutMode: 'fitRows',
-  getSortData: {
-    name: '.name',
-    rating: '[rating]',
-    "is-open": '[is-open]'
-  }
-});
+// var $grid = $('.grid').isotope({
+//   itemSelector: '.element-item',
+//   layoutMode: 'fitRows',
+//   getSortData: {
+//     name: '.name',
+//     rating: '[rating]',
+//     "is-open": '[is-open]'
+//   }
+// });
 
 
-// bind sort button click
-$('#sorts').on( 'click', '.btn', function() {
-  console.log("something is happening in #sorts");
-  var sortByValue = $(this).attr('data-sort-by');
-  $grid.isotope({ sortBy: sortByValue });
-});
+// // bind sort button click
+// $('#sorts').on( 'click', '.btn', function() {
+//   console.log("something is happening in #sorts");
+//   var sortByValue = $(this).attr('data-sort-by');
+//   $grid.isotope({ sortBy: sortByValue });
+// });
 
-// change is-checked class on buttons
-$('.btn-group').each( function( i, buttonGroup ) {
-  var $buttonGroup = $( buttonGroup );
-  $buttonGroup.on( 'click', 'button', function() {
-    $buttonGroup.find('.is-checked').removeClass('is-checked');
-    $( this ).addClass('is-checked');
-  });
-});
+// // change is-checked class on buttons
+// $('.btn-group').each( function( i, buttonGroup ) {
+//   var $buttonGroup = $( buttonGroup );
+//   $buttonGroup.on( 'click', 'button', function() {
+//     $buttonGroup.find('.is-checked').removeClass('is-checked');
+//     $( this ).addClass('is-checked');
+//   });
+// });

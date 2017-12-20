@@ -10,6 +10,9 @@
 
     <title>Local</title>
 
+    <!-- Isotope Plugin -->
+    <script src="js/isotope.pkgd.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -23,7 +26,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/fev4asl.css">
 
     <!-- Button Styles -->
-    <link href="css/base.css" rel="stylesheet">
+    <!-- <link href="css/base.css" rel="stylesheet"> -->
     <link href="css/buttons.css" rel="stylesheet">
     <link href="css/vicons-font.css" rel="stylesheet">
 
@@ -59,20 +62,22 @@
     <header class="parallax text-center">
       <div class="container">
         <h1>Welcome to Local</h1>
-        <p class="lead">Discover the best restaurants in Richmond by neighboorhoods</p>
+        <p class="lead">Discover the best restaurants in Richmond by neighborhoods</p>
         <div class="container box bg-1">
           <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-map-marker"></i><span>Map</span></button>
           <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-clock"></i><span>Weather</span></button>
               <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-plus"></i><span>Search</span></button>
         </div>
            <div class="box">
-      <select class="wide">
+      <select class="wide" >
         <option data-display="Choose a neighboorhood">Nothing</option>
-        <option value="1">Some option</option>
-        <option value="2">Another option</option>
+        <option value="1">Carytown</option>
+        <option value="2">Museum District</option>
+        <option value="2">Fan District</option>
         <option value="3" disabled>A disabled option</option>
         <option value="4">Potato</option>
       </select>
+      <button class="btn btn-primary" id="selector-button">Submit</button>
     </div>
       </div>
     </header>
@@ -85,7 +90,7 @@
                 <a href="#"><img class="card-img-top" src="img/benjamin-zanatta-412609.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item One</a>
+                    <a href="#" id='name-display" + count + "'>Item One</a>
                   </h4>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                 </div>
@@ -193,6 +198,7 @@
         </div>
       </div>
     </section>
+    <div id="map"></div>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -201,6 +207,11 @@
       </div>
       <!-- /.container -->
     </footer>
+
+    <!-- google maps -->
+    <script type="text/javascript"
+    async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24&libraries=places&callback=displayNeighborhoodInfo"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
