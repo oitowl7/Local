@@ -269,4 +269,3 @@ $('.btn-group').each( function( i, buttonGroup ) {
     $( this ).addClass('is-checked');
   });
 });
-  

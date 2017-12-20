@@ -11,10 +11,23 @@
     <title>Local</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    
+    <!-- jQuery Nice Select -->
+    <link href="css/nice-select.css" rel="stylesheet">
+
+    <!-- Adobe Typekit -->
+    <link rel="stylesheet" href="https://use.typekit.net/fev4asl.css">
+
+    <!-- Button Styles -->
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/vicons-font.css" rel="stylesheet">
+
+
 
   </head>
 
@@ -23,7 +36,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Local</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><i class="fa fa-compass" aria-hidden="true"></i> Local</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,10 +56,24 @@
       </div>
     </nav>
 
-    <header class="bg-primary text-white">
-      <div class="container text-center">
+    <header class="parallax text-center">
+      <div class="container">
         <h1>Welcome to Local</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p class="lead">Discover the best restaurants in Richmond by neighboorhoods</p>
+        <div class="container box bg-1">
+          <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-map-marker"></i><span>Map</span></button>
+          <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-clock"></i><span>Weather</span></button>
+              <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-plus"></i><span>Search</span></button>
+        </div>
+           <div class="box">
+      <select class="wide">
+        <option data-display="Choose a neighboorhood">Nothing</option>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
+        <option value="3" disabled>A disabled option</option>
+        <option value="4">Potato</option>
+      </select>
+    </div>
       </div>
     </header>
 
@@ -54,8 +81,8 @@
       <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/benjamin-zanatta-412609.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item One</a>
@@ -68,9 +95,9 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
+              <div class="element-item card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/toa-heftiba-195458.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Two</a>
@@ -83,9 +110,10 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+
+            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
+              <div class="element-item card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/jungwoo-hong-112133.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Three</a>
@@ -98,9 +126,9 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
+              <div class="element-item card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/nick-hillier-254650.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Four</a>
@@ -113,9 +141,9 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
+              <div class="element-item card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/rob-bye-98949.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Five</a>
@@ -128,9 +156,9 @@
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
+              <div class="element-item card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="img/serge-esteve-5821.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Six</a>
@@ -183,6 +211,27 @@
 
     <!-- JavaScript -->
     <script src="js/app.js"></script>
+
+    <!-- Font Awesome 5 -->
+    <script src="https://use.fontawesome.com/0e0787515a.js"></script>
+
+    <!-- jQuery Nice Select -->
+    <script src="js/jquery.js"></script> 
+    <script src="js/jquery.nice-select.js"></script>
+
+    <!-- Adobe Script -->
+     <script type="text/javascript" src="https://use.typekit.net/fev4asl.css"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!-- Button Style -->
+    <script>
+      (function() {
+        var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+        if(isSafari) {
+          document.getElementById('support-note').style.display = 'block';
+        }
+      })();
+    </script>
 
   </body>
 
