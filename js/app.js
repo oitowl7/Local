@@ -111,6 +111,11 @@
 //   ]
 
 //nothing in here yet but there will eventually I'm sure
+var neightborhoods = [];
+var map;
+var service;
+var infowindow;
+var object = []
 
 $(document).on("load", function(){
   displayNeighborhoodInfo();
@@ -118,81 +123,87 @@ $(document).on("load", function(){
 
 function displayNeighborhoodInfo() {
 
-       //Change this line when transitioning
-        var neighborhood = $(this).attr("data-name");
+  //Change this line when transitioning
+  var neighborhood = $(this).attr("data-name");
 
-         var richmond = new google.maps.LatLng(37.5407,-77.4360);
+   var richmond = new google.maps.LatLng(37.5407,-77.4360);
 
-         map = new google.maps.Map(document.getElementById('map'), {
-          center: richmond,
-          zoom: 11
-          });
+   map = new google.maps.Map(document.getElementById('map'), {
+    center: richmond,
+    zoom: 11
+    });
 
-          var request = {
-          location: richmond,
-          radius: '20000',
-          type: ['restaurant'],
-          keyword: neighborhood
-          };
+    var request = {
+    location: richmond,
+    radius: '20000',
+    type: ['restaurant'],
+    keyword: neighborhood
+    };
 
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
-      }
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+}
 
-    function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        var object = []
-        for (var i = 0; i < results.length; i++) {
-          
-        var place = results[i];
-        // var name = JSON.stringify(results[i].name);
-        // var attribution = JSON.stringify(results[i].html_attributions[0]);
-        // var style = JSON.stringify(results[i].html_attributions[1]);
-        // var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24";
-        // var address = JSON.stringify(results[i].vicinity);
-        var placeId = results[i].place_id;
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      
+    var place = results[i];
+    // var name = JSON.stringify(results[i].name);
+    // var attribution = JSON.stringify(results[i].html_attributions[0]);
+    // var style = JSON.stringify(results[i].html_attributions[1]);
+    // var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24";
+    // var address = JSON.stringify(results[i].vicinity);
+    var placeId = results[i].place_id;
 
-        service.getDetails({
-            placeId: placeId 
-          }, function respondToDetailsRequest(results,status) {
-            // console.log(results.formatted_phone_number);
-            var name = results.name;
-            var address = results.vicinity
-            var open = results.opening_hours.open_now;
-            var priceLevel = results.price_level;
-            var rating = results.rating;
-            var phone = results.formatted_phone_number;
-            var mapsUrl = results.url;
-            var website = results.website;
-            var objectToPush = {
-              phone: phone,
-              mapsUrl: mapsUrl,
-              website: website
-            }
-            return(details)
-          });
-
-
-        var rating = JSON.stringify(results[i].rating);
-        var priceLevel = JSON.stringify(results[i].price_level);
-        var open = results[i].opening_hours.open_now;
+    service.getDetails({
+        placeId: placeId 
+      }, function respondToDetailsRequest(results,status) {
+        console.log(status);
+        var name = results.name;
+        var address = results.vicinity;
+        var open = results.opening_hours.open_now;
+        var priceLevel = results.price_level;
+        var rating = results.rating;
+        var phone = results.formatted_phone_number;
+        var mapsUrl = results.url;
+        var website = results.website;
         var objectToPush = {
-          name: JSON.stringify(results[i].name),
-          address: JSON.stringify(results[i].vicinity),
-          rating: JSON.stringify(results[i].rating),
-          priceLevel: results[i].price_level,
-          open: results[i].opening_hours.open_now,
-          // details: respondToDetailsRequest()
+          name: name,
+          address: address,
+          open: open,
+          priceLevel: priceLevel,
+          rating: rating,
+          phone: phone,
+          mapsUrl: mapsUrl,
+          website: website
         }
-        console.log(objectToPush);
-        };
- 
+        object.push(objectToPush);
+        console.log(object);
+        // console.log(objectToPush);
+      });
 
-     
-      // console.log(JSON.stringify(results));
-      // console.log(JSON.stringify(results[i].place_id));
+
+    // var rating = JSON.stringify(results[i].rating);
+    // var priceLevel = JSON.stringify(results[i].price_level);
+    // var open = results[i].opening_hours.open_now;
+    // var objectToPush = {
+    //   name: JSON.stringify(results[i].name),
+    //   address: JSON.stringify(results[i].vicinity),
+    //   rating: JSON.stringify(results[i].rating),
+    //   priceLevel: results[i].price_level,
+    //   open: results[i].opening_hours.open_now,
+      // details: respondToDetailsRequest()
     }
-  }
+    // console.log(objectToPush);
+    };
+
+
+ 
+  // console.log(JSON.stringify(results));
+  // console.log(JSON.stringify(results[i].place_id));
+}
+
 
 
 

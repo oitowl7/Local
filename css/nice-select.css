@@ -66,7 +66,7 @@
     .nice-select.disabled:after {
       border-color: #cccccc; }
   .nice-select.wide {
-    width: 50%; }
+    min-width: 60%; }
     .nice-select.wide .list {
       left: 0 !important;
       right: 0 !important; }
