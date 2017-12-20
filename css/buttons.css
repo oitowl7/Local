@@ -605,6 +605,7 @@
 	overflow: hidden;
 	-webkit-transition: color 0.3s;
 	transition: color 0.3s;
+	font-family:  "sofia-pro",sans-serif;
 }
 .button--aylen.button--inverted {
 	background: none;
