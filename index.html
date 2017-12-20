@@ -10,9 +10,6 @@
 
     <title>Local</title>
 
-    <!-- Isotope Plugin -->
-    <script src="js/isotope.pkgd.js"></script>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -26,9 +23,12 @@
     <link rel="stylesheet" href="https://use.typekit.net/fev4asl.css">
 
     <!-- Button Styles -->
-    <!-- <link href="css/base.css" rel="stylesheet"> -->
+    <link href="css/base.css" rel="stylesheet">
     <link href="css/buttons.css" rel="stylesheet">
     <link href="css/vicons-font.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="fa fa-compass" type="image/gif" sizes="16x16">
 
 
 
@@ -40,19 +40,22 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top"><i class="fa fa-compass" aria-hidden="true"></i> Local</a>
+    <h5 class="tempdisplay temp-select"><span class="temps"></span><span id="degree">&deg</span><span id="degree-letter">F</span><h5 class="tempdisplay" id="condition"></h5></h5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
+
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Loren Ipsum</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Restaurants</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Loren Ipsum</a>
+
+              <a class="nav-link js-scroll-trigger" href="#services">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Loren Ipsum</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
           </ul>
         </div>
@@ -62,18 +65,17 @@
     <header class="parallax text-center">
       <div class="container">
         <h1>Welcome to Local</h1>
-        <p class="lead">Discover the best restaurants in Richmond by neighborhoods</p>
+        <p class="lead">Discover the best restaurants in Richmond by neighboorhoods</p>
         <div class="container box bg-1">
           <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-map-marker"></i><span>Map</span></button>
           <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-clock"></i><span>Weather</span></button>
               <button class="button button--aylen button--round-l button--text-small" id="selector-button"><i class="button__icon icon icon-plus"></i><span>Search</span></button>
         </div>
            <div class="box">
-      <select class="wide" >
+      <select class="wide">
         <option data-display="Choose a neighboorhood">Nothing</option>
-        <option value="1">Carytown</option>
-        <option value="2">Museum District</option>
-        <option value="2">Fan District</option>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
         <option value="3" disabled>A disabled option</option>
         <option value="4">Potato</option>
       </select>
@@ -83,13 +85,13 @@
 
     <section id="about">
       <div class="container">
-        <div class="row" id="card-holder">
+        <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/benjamin-zanatta-412609.jpg" alt=""></a>
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#" id='name-display" + count + "'>Item One</a>
+                    <a href="#">Item One</a>
                   </h4>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                 </div>
@@ -99,9 +101,9 @@
               </div>
             </div>
 
-            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
-              <div class="element-item card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/toa-heftiba-195458.jpg" alt=""></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Two</a>
@@ -114,10 +116,9 @@
               </div>
             </div>
 
-
-            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
-              <div class="element-item card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/jungwoo-hong-112133.jpg" alt=""></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Three</a>
@@ -130,9 +131,9 @@
               </div>
             </div>
 
-            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
-              <div class="element-item card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/nick-hillier-254650.jpg" alt=""></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Four</a>
@@ -145,9 +146,9 @@
               </div>
             </div>
 
-            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
-              <div class="element-item card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/rob-bye-98949.jpg" alt=""></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Five</a>
@@ -160,9 +161,9 @@
               </div>
             </div>
 
-            <div class="grid col-lg-4 col-md-6 mb-4" rating="" is-open="">
-              <div class="element-item card h-100 polaroid">
-                <a href="#"><img class="card-img-top" src="img/serge-esteve-5821.jpg" alt=""></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100 polaroid">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">Item Six</a>
@@ -180,8 +181,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Loren Ipsum</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+            <h2>About</h2>
+            <p class="lead">Local was founded in 2017 to help the Richmond community, and visitors alike, find great local restaurants based on neighborhood.</p>
           </div>
         </div>
       </div>
@@ -197,6 +198,7 @@
         </div>
       </div>
     </section>
+<<<<<<< HEAD
      -->
     <div id="map"></div>
 
@@ -207,11 +209,6 @@
       </div>
       <!-- /.container -->
     </footer>
-
-    <!-- google maps -->
-    <script type="text/javascript"
-    async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24&libraries=places&callback=displayNeighborhoodInfo"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
