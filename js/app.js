@@ -53,7 +53,7 @@ var infowindow;
 var object = []
 
 $(document).ready(function(){
-  console.log("this happened on load");
+  // console.log("this happened on load");
   $("#card-holder").hide();
   $('select').niceSelect();
 });
@@ -129,7 +129,8 @@ function callback(results, status) {
 
 
 
-        var divToAppend = $("<div class='col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
+        var randomNumber = Math.floor(Math.random()  * (7) + 1);
+        var divToAppend = $("<div class='col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/"+ randomNumber + ".jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
        
         $("#card-holder").append(divToAppend)
 
@@ -160,18 +161,31 @@ $("#selector-button").on("click", function(){
       return;
     } else {  
       $("#card-holder").show();
+      // var timer = setInterval(function(){
+      // }, 2000);
+      // $("#card-holder").show();
       var neighborhoodSelected = $("#selector").val();
       previousNeighborhood = neighborhoodSelected;
       displayNeighborhoodInfo();
         database.ref().push({
             neighborhood: neighborhoodSelected
         });   
-    
     }
+})
 
-
+$("#submit-comment").on('click', function(){
+  var userEmail = $("#user-email").val().trim();
+  var userComment = $("#message").val();
+  database.ref().push({
+    email: userEmail,
+    comment: userComment
+  })
+  $("form").each(function(){
+    this.reset();
+  })
 
 })
+
 
 
 var changeRating = function(data, i){
@@ -189,7 +203,7 @@ var changeRating = function(data, i){
     return("&#9733; &#9733; &#9733; &#9733; &#9733;");
   }
   else {
-    console.log("you done f***** up");
+    // console.log("you done f***** up");
   }
 }
 
