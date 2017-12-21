@@ -39,8 +39,11 @@ var service;
 var infowindow;
 var object = []
 
-$(document).on("load", function(){
-  displayNeighborhoodInfo();
+$(document).ready(function(){
+  console.log("this happened on load");
+  $("#card-holder").hide();
+});
+$(window).ready(function(){
 })
 
 function displayNeighborhoodInfo() {
@@ -69,7 +72,7 @@ function displayNeighborhoodInfo() {
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    var count = 0
+    var count = 0;
     $("#card-holder").empty();
     for (var i = 0; i < results.length; i++) {
       
@@ -94,14 +97,28 @@ function callback(results, status) {
         var phone = results.formatted_phone_number;
         var mapsUrl = results.url;
         var website = results.website;
+        var openNow;
+        var openSort;
+        var ratingSort = 1/rating;
+        if (open === false){
+          openNow = "Closed";
+          openSort = 2;
+        } else if (open === true) {
+          openNow = "Open";
+          openSort = 1;
+        }
 
-        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4' rating='" + rating + count + "' is-open='" + open + count + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'></a></h4><p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
+
+
+
+        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
        
         $("#card-holder").append(divToAppend)
 
-        $("#rating" + count).attr("data-filter", rating);
+        $("#data-here" + count).attr("rating", ratingSort);
+        $("#data-here" + count).attr("is-open", openSort);
+
         $("#rating-display" + count).html(changeRating(rating));
-        $("#name-display" + count).html(name);
 
         count++
 
@@ -118,10 +135,7 @@ function callback(results, status) {
 //this will change to the google ajax return when we actually have one. For now it is 
 //using the example object above
 $("#selector-button").on("click", function(){
-  //google requester will initiate ajax call? I think that's where we are at this point
-  // googleRequester();
-  // console.log("its working")
-  //input validation. they can't use "please select district" as their search thingy
+  $("#card-holder").show();
   if ($("#selector").val() === "Please Select a District"){
     return;
   } else {
@@ -152,33 +166,6 @@ var changeRating = function(data, i){
 }
 
 
-  // var googleRequester = function() {
-
-  //   googleData = requestStuffFromGoogle();
-  //   $('#card-holder').append(retrieveHtmlTemplate('./template.html', googleData));
-
-  // }
-
-
-
-// var retrieveHtmlTemplate = function(templatePath, data, i) {
-//   var html = null;
-//   console.log(html);
-  
-//   $.get(templatePath, function(htmlResult) {
-//     console.log("Result: " + htmlResult);
-//     html = htmlResult;
-//   }, 'html');
-
-//   var templateDomElement = $(html);
-//   templateDomElement.set('#rating').html(data[i].displayRating);
-//   templateDomElement.set("#name").html((data)[i].name);
-//   templateDomElement.set("#rating").attr("data-value", data[i].numRating);
-
-//   return templateDomElement;
-
-
-// };
 
 // // init Isotope
 // var $grid = $('.grid').isotope({

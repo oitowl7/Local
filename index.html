@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-
+    
     <!-- Style -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
     
@@ -29,6 +29,9 @@
 
     <!-- Favicon -->
     <link rel="icon" href="fa fa-compass" type="image/gif" sizes="16x16">
+    
+    <!-- isotope -->
+    <script src="js/isotope.pkgd.js"></script>
 
 
 
@@ -73,13 +76,25 @@
         </div>
            <div class="box">
       <select class="wide" id="selector">
-        <option data-display="Choose a neighboorhood">Nothing</option>
+        <option data-display="Choose a neighboorhood">Please Select a District</option>
         <option value="Carytown">Carytown</option>
         <option value="Museum District">Museum District</option>
       </select>
     </div>
       </div>
     </header>
+
+
+
+    <div class="text-center">
+      <h2 class="text-center">Sort</h2>
+      <div id="sorts" class="btn-group">  
+        <button type="button" class=" btn button button--aylen button--round-l button--text-small" id ="name-button" data-sort-by="name">Name</button>
+        <button type="button" class=" btn button button--aylen button--round-l button--text-small"  data-sort-by="rating">Rating</button>
+        <button type="button" class=" btn button button--aylen button--round-l button--text-small" data-sort-by="is-open">Open</button>
+      </div>
+    </div>
+
 
     <section id="about">
       <div class="container">
@@ -174,18 +189,18 @@
               </div>
             </div>
     </section>
-<!-- 
+
     <section id="services" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>About</h2>
-            <p class="lead">Local was founded in 2017 to help the Richmond community, and visitors alike, find great local restaurants based on neighborhood.</p>
+            <p class="lead">Local was founded in 2017 to help the Richmond community and visitors find great local restaurants based on neighborhood.</p>
           </div>
         </div>
       </div>
     </section>
-
+<!-- 
     <section id="contact">
       <div class="container">
         <div class="row">
@@ -195,9 +210,9 @@
           </div>
         </div>
       </div>
-    </section>
-<<<<<<< HEAD
-     -->
+    </section> -->
+
+    
     <div id="map"></div>
 
     <!-- Footer -->
