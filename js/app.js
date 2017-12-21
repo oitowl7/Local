@@ -1,4 +1,4 @@
- // Initialize Firebase
+// Initialize Firebase
   var config = {
     apiKey: "AIzaSyAe4Nzf4J64rmVWfyj_U773xVtKV44xqIg",
     authDomain: "local-1513122630796.firebaseapp.com",
@@ -8,13 +8,12 @@
     messagingSenderId: "549672056981"
   };
   firebase.initializeApp(config);
-
   // Reference for the database service
   var database = firebase.database();
   // Initiliazing our click count at 0
-  var clickCounter = 0;
-
-(function($) {
+  var clickCounter = database.ref().get();
+ 
+ (function($) {
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
@@ -68,6 +67,10 @@ function displayNeighborhoodInfo() {
   //Change this line when transitioning
   // console.log("something s happnin");
   var neighborhood = $("#selector").val();
+  if (neighborhood === "Please Select a District") {
+    $("card-holder").hide();
+    return
+  }
 
    var richmond = new google.maps.LatLng(37.5407,-77.4360);
 
@@ -94,6 +97,11 @@ function callback(results, status) {
     for (var i = 0; i < results.length; i++) {
       
     var place = results[i];
+    // var name = JSON.stringify(results[i].name);
+    // var attribution = JSON.stringify(results[i].html_attributions[0]);
+    // var style = JSON.stringify(results[i].html_attributions[1]);
+    // var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24";
+    // var address = JSON.stringify(results[i].vicinity);
     var placeId = results[i].place_id;
 
 
@@ -123,7 +131,7 @@ function callback(results, status) {
 
 
 
-        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
+        var divToAppend = $("<div class='col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
        
         $("#card-holder").append(divToAppend)
 
@@ -142,28 +150,31 @@ function callback(results, status) {
     }
     };
 
-} 
+}
 
-
-
+var previousNeighborhood;
 //this will change to the google ajax return when we actually have one. For now it is 
 //using the example object above
 $("#selector-button").on("click", function(){
-  $("#card-holder").show();
-  if ($("#selector").val() === "Please Select a District"){
-    return;
-  } else {
-  var neighborhoodSelected = $("#selector").val();
-  displayNeighborhoodInfo();
-  //Add to clickCounter
-    clickCounter++;
+
+
+    if ($("#selector").val() === "Please Select a District"){
+      return;
+    } else {  
+      $("#card-holder").show();
+      var neighborhoodSelected = $("#selector").val();
+      if (previousNeighborhood !== neighborhoodSelected) {
+        clickCounter++; 
+          database.ref().set({
+            clickCount: clickCounter
+        });
+      }
+      previousNeighborhood = neighborhoodSelected;
+      displayNeighborhoodInfo();   
     
-    database.ref().push({
-      neighborhood: neighborhoodSelected
-      
-      // clickCount: clickCounter
-    });
-  }
+    }
+
+
 
 })
 
