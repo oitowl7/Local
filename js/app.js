@@ -95,7 +95,7 @@ function callback(results, status) {
         var mapsUrl = results.url;
         var website = results.website;
 
-        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4' rating='" + rating + count + "' is-open='" + open + count + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='#' id='name-display" + count + "'>Item Two</a></h4><p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
+        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4' rating='" + rating + count + "' is-open='" + open + count + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'></a></h4><p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
        
         $("#card-holder").append(divToAppend)
 
@@ -127,7 +127,6 @@ $("#selector-button").on("click", function(){
   } else {
   var neighborhoodSelected = $("#selector").val();
   displayNeighborhoodInfo();
-  appendStepOne(object, neighborhoodSelected);
   }
 
 })
