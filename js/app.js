@@ -51,6 +51,10 @@ function displayNeighborhoodInfo() {
   //Change this line when transitioning
   // console.log("something s happnin");
   var neighborhood = $("#selector").val();
+  if (neighborhood === "Please Select a District") {
+    $("card-holder").hide();
+    return
+  }
 
    var richmond = new google.maps.LatLng(37.5407,-77.4360);
 
@@ -111,7 +115,7 @@ function callback(results, status) {
 
 
 
-        var divToAppend = $("<div class='grid col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
+        var divToAppend = $("<div class='col-lg-4 col-md-6 mb-4 element-item data-here"+count+"' rating='" + ratingSort + "' name='"+ name + "' is-open='" + openSort + "'><div class='element-item card h-100 polaroid'><a href='#'><img class='card-img-top' src='img/toa-heftiba-195458.jpg' alt=''></a><div class='card-body'><h4 class='card-title'><a href='" + website + "' target='blank' id='name-display" + count + "'>"+name+"</a></h4><p class='card-text' id='address-display'>Address: " + address + "</p><p class='card-text' id='open-display'>Open or Closed: " + openNow + "</p><a href='" + mapsUrl + "' target='blank' id='map-link-display'>Link to Map</a></div><div class='card-footer'><small class='text-muted' id='rating-display" + count + "'>&#9733; &#9733; &#9733; &#9733; &#9734;</small></div></div></div>")
        
         $("#card-holder").append(divToAppend)
 
@@ -135,13 +139,14 @@ function callback(results, status) {
 //this will change to the google ajax return when we actually have one. For now it is 
 //using the example object above
 $("#selector-button").on("click", function(){
-  $("#card-holder").show();
-  if ($("#selector").val() === "Please Select a District"){
-    return;
-  } else {
-  var neighborhoodSelected = $("#selector").val();
-  displayNeighborhoodInfo();
-  }
+    if ($("#selector").val() === "Please Select a District"){
+      return;
+    } else {  
+      $("#card-holder").show();
+      var neighborhoodSelected = $("#selector").val();
+      displayNeighborhoodInfo();
+    }
+
 
 })
 
