@@ -10,8 +10,6 @@
   firebase.initializeApp(config);
   // Reference for the database service
   var database = firebase.database();
-  // Initiliazing our click count at 0
-  var clickCounter = database.ref().get();
  
  (function($) {
   "use strict"; // Start of use strict
@@ -163,14 +161,11 @@ $("#selector-button").on("click", function(){
     } else {  
       $("#card-holder").show();
       var neighborhoodSelected = $("#selector").val();
-      if (previousNeighborhood !== neighborhoodSelected) {
-        clickCounter++; 
-          database.ref().set({
-            clickCount: clickCounter
-        });
-      }
       previousNeighborhood = neighborhoodSelected;
-      displayNeighborhoodInfo();   
+      displayNeighborhoodInfo();
+        database.ref().push({
+            neighborhood: neighborhoodSelected
+        });   
     
     }
 
