@@ -1,3 +1,14 @@
+// init Isotope
+var $grid = $('.grid').isotope({
+  itemSelector: '.element-item',
+  layoutMode: 'fitRows',
+  getSortData: {
+    name: '[name]',
+    rating: '[rating]',
+    open: '.is-open',
+  }
+});
+
 (function($) {
   "use strict"; // Start of use strict
 
@@ -216,17 +227,6 @@ $.getJSON("https://ipinfo.io/geo", function(data) {
 });
 
 
-
-// // init Isotope
-// var $grid = $('.grid').isotope({
-//   itemSelector: '.element-item',
-//   layoutMode: 'fitRows',
-//   getSortData: {
-//     name: '[name]',
-//     rating: '[rating]',
-//     open: '.is-open',
-//   }
-// });
 
 
 
