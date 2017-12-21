@@ -1,3 +1,19 @@
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAe4Nzf4J64rmVWfyj_U773xVtKV44xqIg",
+    authDomain: "local-1513122630796.firebaseapp.com",
+    databaseURL: "https://local-1513122630796.firebaseio.com",
+    projectId: "local-1513122630796",
+    storageBucket: "local-1513122630796.appspot.com",
+    messagingSenderId: "549672056981"
+  };
+  firebase.initializeApp(config);
+
+  // Reference for the database service
+  var database = firebase.database();
+  // Initiliazing our click count at 0
+  var clickCounter = 0;
+
 (function($) {
   "use strict"; // Start of use strict
 
@@ -78,11 +94,6 @@ function callback(results, status) {
     for (var i = 0; i < results.length; i++) {
       
     var place = results[i];
-    // var name = JSON.stringify(results[i].name);
-    // var attribution = JSON.stringify(results[i].html_attributions[0]);
-    // var style = JSON.stringify(results[i].html_attributions[1]);
-    // var imgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24";
-    // var address = JSON.stringify(results[i].vicinity);
     var placeId = results[i].place_id;
 
 
@@ -131,7 +142,9 @@ function callback(results, status) {
     }
     };
 
-}
+} 
+
+
 
 //this will change to the google ajax return when we actually have one. For now it is 
 //using the example object above
@@ -142,6 +155,11 @@ $("#selector-button").on("click", function(){
   } else {
   var neighborhoodSelected = $("#selector").val();
   displayNeighborhoodInfo();
+  //Add to clickCounter
+    clickCounter++;
+    database.ref().push({
+      clickCount: clickCounter
+    });
   }
 
 })
