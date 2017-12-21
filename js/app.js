@@ -157,8 +157,11 @@ $("#selector-button").on("click", function(){
   displayNeighborhoodInfo();
   //Add to clickCounter
     clickCounter++;
+    
     database.ref().push({
-      clickCount: clickCounter
+      neighborhood: neighborhoodSelected
+      
+      // clickCount: clickCounter
     });
   }
 
