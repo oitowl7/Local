@@ -81,8 +81,35 @@
         <h1>Welcome to Local</h1>
         <p class="lead">Discover the best restaurants in Richmond by neighboorhoods</p>
         <div class="container box bg-1">
-          <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-map-marker"></i><span>Map</span></button>
-          <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-clock"></i><span>Weather</span></button>
+          <button type="button" class="button button--aylen button--round-l button--text-small" data-toggle="modal" data-target="#myModal"><i class="button__icon icon icon-map-marker"></i><span>Map</span></button>
+
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <div class="modal-content" style="width: 700px;">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="z-index: 1">map</h4>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="hide-the-top" style="height: 50px; width: 100%; z-index: 999999 !important; background-color: white; position: relative">
+                    </div>
+                  
+                    <iframe frameborder="0" style="border:0; position: relative; top: -50px;" src="https://www.google.com/maps/d/embed?36.548013%2c-78.447435&z=11&mid=1ZmoNUYHc6fskwtACYZ0fFzQ71rPusa4C" width="640" height="480" id="mapframe"></iframe>
+                    <!-- 37.548013, -77.447435 -->
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+<!-- 
+          <button class="button button--aylen button--round-l button--text-small"><i class="button__icon icon icon-clock"></i><span>Weather</span></button> -->
               <button class="button button--aylen button--round-l button--text-small" id="selector-button"><i class="button__icon icon icon-plus"></i><span>Search</span></button>
         </div>
            <div class="box">
