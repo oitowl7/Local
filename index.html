@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/fev4asl.css">
 
     <!-- Button Styles -->
-    <link href="css/base.css" rel="stylesheet">
+    <!-- <link href="css/base.css" rel="stylesheet"> -->
     <link href="css/buttons.css" rel="stylesheet">
     <link href="css/vicons-font.css" rel="stylesheet">
 
@@ -72,12 +72,10 @@
               <button class="button button--aylen button--round-l button--text-small" id="selector-button"><i class="button__icon icon icon-plus"></i><span>Search</span></button>
         </div>
            <div class="box">
-      <select class="wide">
+      <select class="wide" id="selector">
         <option data-display="Choose a neighboorhood">Nothing</option>
-        <option value="1">Some option</option>
-        <option value="2">Another option</option>
-        <option value="3" disabled>A disabled option</option>
-        <option value="4">Potato</option>
+        <option value="Carytown">Carytown</option>
+        <option value="Museum District">Museum District</option>
       </select>
     </div>
       </div>
@@ -85,7 +83,7 @@
 
     <section id="about">
       <div class="container">
-        <div class="row">
+        <div class="row grid" id="card-holder">
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 polaroid">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -209,6 +207,11 @@
       </div>
       <!-- /.container -->
     </footer>
+    
+    <!-- goole map -->
+    <script type="text/javascript"
+  async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYXCq6EB8O4erxFYFCwODnctP39mYUf24&libraries=places&callback=displayNeighborhoodInfo"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
